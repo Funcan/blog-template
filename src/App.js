@@ -99,10 +99,23 @@ const AppBar = (props) => (
 class App extends Component {
   state = {
     showSidebar: false,
+    loading: true,
+    posts: [],
+  }
+
+  updatePosts(posts) {
+    this.setState({posts: posts})
+  }
+
+  componentDidMount() {
+    fetch('posts.json')
+      .then(response => response.json())
+      .then(data => this.updatePosts(data.posts))
   }
 
   render() {
     const { showSidebar } = this.state;
+    const { posts } = this.state;
     return (
       <Grommet theme={theme} full>
         <ResponsiveContext.Consumer>
@@ -155,8 +168,9 @@ class App extends Component {
 
                 <Box flex align='center' justify='center'>
                   <Carousel>
-                    <Image src="posts/unit-tests-1/unittests.png" />
-                    <Image src="posts/unit-tests-2-mutation/biohazard.png" />
+                    {posts.map((post, index) =>
+                      <Image src={post.Image} key={post.Image+index} />
+                    )}
                   </Carousel>
                   <Markdown>
                     {postcontent}
