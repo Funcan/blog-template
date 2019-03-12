@@ -1,4 +1,4 @@
-import React, { Children, Component } from 'react';
+import React, { Component } from 'react';
 import {
   Box,
   Button,
@@ -84,7 +84,7 @@ const postcontent = `
 
 Foo bar baz
 
-More test would go here if I was a real post... Markdowwn stuff like **this** and __this__. Not sure if /this/ works too?
+More test would go here if I was a real post... Markdown stuff like **this** and __this__. Not sure if /this/ works too?
 `;
 
 const AppBar = (props) => (
@@ -102,39 +102,55 @@ const AppBar = (props) => (
 );
 
 class PostCorousel extends Component {
-  state = { activeIndex: 0,
-            leftpic: "posts/unit-tests-1/unittests.png",
-            centrepic: "posts/unit-tests-2-mutation/biohazard.png",
-            rightpic: "testing/question-mark.jpg" };
+  state = { activeIndex: 0};
 
   onRight = () => {
     const { activeIndex } = this.state;
-    this.setState({
-      activeIndex: activeIndex + 1,
-    });
+    const { posts } = this.props;
+
+    if (activeIndex < posts.length - 1) {
+      this.setState({
+        activeIndex: activeIndex + 1,
+      });
+    }
   };
 
   onLeft = () => {
     const { activeIndex } = this.state;
-    const { posts } = this.state;
-    this.setState({
-      activeIndex: activeIndex - 1,
-    });
-    console.log(posts);
+
+    if (activeIndex > 0) {
+      this.setState({
+        activeIndex: activeIndex - 1,
+      });
+    }
   };
 
   render() {
-    const { children } = this.props;
-
-    const { leftpic } = this.state;
-    const { centrepic } = this.state;
-    const { rightpic } = this.state;
+    const { posts } = this.props;
 
     const { activeIndex } = this.state;
-    const lastIndex = Children.count(children) - 1;
 
-    const onLeft = activeIndex > 0 ? this.onLeft : undefined;
-    const onRight = activeIndex < lastIndex ? this.onRight : undefined;
+    var left = (activeIndex > 0 ? posts[activeIndex-1].Image : "1px.png");
+    const leftpic = left;
+
+    var center;
+    if (posts.length > 0) {
+      center = posts[activeIndex].Image;
+    } else {
+      center = "1px.png";
+    }
+    const centerpic = center;
+
+    var right;
+    if ((posts.length > 1) && (activeIndex < posts.length - 1)) {
+      right = posts[activeIndex + 1].Image;
+    } else {
+      right = "1px.png";
+    }
+    const rightpic = right;
+
+    const onLeft = this.onLeft;
+    const onRight = this.onRight;
 
     return (
       <Keyboard onLeft={onLeft} onRight={onRight}>
@@ -143,7 +159,7 @@ class PostCorousel extends Component {
             areas = {[
               { name: 'previcon', start: [0, 0], end: [0, 1] },
               { name: 'left', start: [1, 0], end: [1, 0] },
-              { name: 'centre', start: [2, 0], end: [2, 0] },
+              { name: 'center', start: [2, 0], end: [2, 0] },
               { name: 'right', start: [3, 0], end: [3, 0] },
               { name: 'nexticon', start: [4, 0], end: [4, 1] },
               { name: 'title', start: [1, 1], end: [3, 1] },
@@ -151,26 +167,32 @@ class PostCorousel extends Component {
             columns = {['xxsmall', 'flex', 'medium', 'flex', 'xxsmall']}
             rows = {['medium', 'small']}
           >
+
             <Button
               fill
               icon={<CaretPrevious />}
               gridArea='previcon'
+              onClick={onLeft}
               hoverIndicator
             />
-            <Box gridArea='left' overflow='hidden'
-            >
-              <Image alignSelf='end' src={leftpic} fit='cover'/>
+
+            <Box gridArea='left' overflow='hidden'>
+              <Image alignSelf='end' src={leftpic} fit='contain'/>
             </Box>
-            <Box gridArea='centre'i fill='vertical'>
-              <Image src={centrepic} fit='cover' fill='vertical'/>
+
+            <Box gridArea='center' direction="row">
+              <Image alignSelf="center" src={centerpic} fit='contain'/>
             </Box>
+
             <Box gridArea='right' overflow='hidden'>
-              <Image alignSelf='start' src={rightpic} fit='cover'/>
+              <Image alignSelf='start' src={rightpic} fit='contain'/>
             </Box>
+
             <Button
               fill
               icon={<CaretNext />}
               gridArea='nexticon'
+              onClick={onRight}
               hoverIndicator
             />
           </Grid>
@@ -200,6 +222,7 @@ class App extends Component {
   render() {
     const { showSidebar } = this.state;
     const { posts } = this.state;
+
     return (
       <Grommet theme={theme} full>
         <ResponsiveContext.Consumer>
