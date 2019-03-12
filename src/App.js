@@ -1,17 +1,20 @@
-import React, { Component } from 'react';
+import React, { Children, Component } from 'react';
 import {
   Box,
   Button,
-  Carousel,
   Collapsible,
+  Grid,
   Grommet,
   Heading,
   Image,
+  Keyboard,
   Layer,
   Markdown,
   ResponsiveContext,
 } from 'grommet';
 import {
+  CaretNext,
+  CaretPrevious,
   FormClose,
   Github,
   Linkedin,
@@ -80,6 +83,8 @@ const postcontent = `
 # Unit Testing Considered Difficult
 
 Foo bar baz
+
+More test would go here if I was a real post... Markdowwn stuff like **this** and __this__. Not sure if /this/ works too?
 `;
 
 const AppBar = (props) => (
@@ -95,6 +100,85 @@ const AppBar = (props) => (
     {...props}
   />
 );
+
+class PostCorousel extends Component {
+  state = { activeIndex: 0,
+            leftpic: "posts/unit-tests-1/unittests.png",
+            centrepic: "posts/unit-tests-2-mutation/biohazard.png",
+            rightpic: "testing/question-mark.jpg" };
+
+  onRight = () => {
+    const { activeIndex } = this.state;
+    this.setState({
+      activeIndex: activeIndex + 1,
+    });
+  };
+
+  onLeft = () => {
+    const { activeIndex } = this.state;
+    const { posts } = this.state;
+    this.setState({
+      activeIndex: activeIndex - 1,
+    });
+    console.log(posts);
+  };
+
+  render() {
+    const { children } = this.props;
+
+    const { leftpic } = this.state;
+    const { centrepic } = this.state;
+    const { rightpic } = this.state;
+
+    const { activeIndex } = this.state;
+    const lastIndex = Children.count(children) - 1;
+
+    const onLeft = activeIndex > 0 ? this.onLeft : undefined;
+    const onRight = activeIndex < lastIndex ? this.onRight : undefined;
+
+    return (
+      <Keyboard onLeft={onLeft} onRight={onRight}>
+        <Box height='medium' direction='row'>
+          <Grid
+            areas = {[
+              { name: 'previcon', start: [0, 0], end: [0, 1] },
+              { name: 'left', start: [1, 0], end: [1, 0] },
+              { name: 'centre', start: [2, 0], end: [2, 0] },
+              { name: 'right', start: [3, 0], end: [3, 0] },
+              { name: 'nexticon', start: [4, 0], end: [4, 1] },
+              { name: 'title', start: [1, 1], end: [3, 1] },
+            ]}
+            columns = {['xxsmall', 'flex', 'medium', 'flex', 'xxsmall']}
+            rows = {['medium', 'small']}
+          >
+            <Button
+              fill
+              icon={<CaretPrevious />}
+              gridArea='previcon'
+              hoverIndicator
+            />
+            <Box gridArea='left' overflow='hidden'
+            >
+              <Image alignSelf='end' src={leftpic} fit='cover'/>
+            </Box>
+            <Box gridArea='centre'i fill='vertical'>
+              <Image src={centrepic} fit='cover' fill='vertical'/>
+            </Box>
+            <Box gridArea='right' overflow='hidden'>
+              <Image alignSelf='start' src={rightpic} fit='cover'/>
+            </Box>
+            <Button
+              fill
+              icon={<CaretNext />}
+              gridArea='nexticon'
+              hoverIndicator
+            />
+          </Grid>
+        </Box>
+      </Keyboard>
+    )
+  }
+}
 
 class App extends Component {
   state = {
@@ -167,11 +251,8 @@ class App extends Component {
                 )}
 
                 <Box flex align='center' justify='center'>
-                  <Carousel>
-                    {posts.map((post, index) =>
-                      <Image src={post.Image} key={post.Image+index} />
-                    )}
-                  </Carousel>
+                  <PostCorousel posts={posts}>
+                  </PostCorousel>
                   <Markdown>
                     {postcontent}
                   </Markdown>
