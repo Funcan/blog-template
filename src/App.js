@@ -79,14 +79,6 @@ const sidebar = (
   </Box>
 )
 
-const postcontent = `
-# Unit Testing Considered Difficult
-
-Foo bar baz
-
-More test would go here if I was a real post... Markdown stuff like **this** and __this__. Not sure if /this/ works too?
-`;
-
 const AppBar = (props) => (
   <Box
     tag='header'
@@ -152,52 +144,71 @@ class PostCorousel extends Component {
     const onLeft = this.onLeft;
     const onRight = this.onRight;
 
+    var content;
+    if (posts.length > 0) {
+      if (posts[activeIndex].Content) {
+        content = posts[activeIndex].Content;
+      } else {
+        content = "Loading...";
+      }
+    } else {
+      content = "";
+    }
+    const postcontent = content;
+
     return (
-      <Keyboard onLeft={onLeft} onRight={onRight}>
-        <Box height='medium' direction='row'>
-          <Grid
-            areas = {[
-              { name: 'previcon', start: [0, 0], end: [0, 1] },
-              { name: 'left', start: [1, 0], end: [1, 0] },
-              { name: 'center', start: [2, 0], end: [2, 0] },
-              { name: 'right', start: [3, 0], end: [3, 0] },
-              { name: 'nexticon', start: [4, 0], end: [4, 1] },
-              { name: 'title', start: [1, 1], end: [3, 1] },
-            ]}
-            columns = {['xxsmall', 'flex', 'medium', 'flex', 'xxsmall']}
-            rows = {['medium', 'small']}
-          >
+      <Box flex align='center' justify='center'>
+        <Keyboard onLeft={onLeft} onRight={onRight}>
+          <Box height='medium' direction='row'>
+            <Grid
+              areas = {[
+                { name: 'previcon', start: [0, 0], end: [0, 1] },
+                { name: 'left', start: [1, 0], end: [1, 0] },
+                { name: 'center', start: [2, 0], end: [2, 0] },
+                { name: 'right', start: [3, 0], end: [3, 0] },
+                { name: 'nexticon', start: [4, 0], end: [4, 1] },
+                { name: 'title', start: [1, 1], end: [3, 1] },
+              ]}
+              columns = {['xxsmall', 'flex', 'medium', 'flex', 'xxsmall']}
+              rows = {['medium', 'small']}
+            >
 
-            <Button
-              fill
-              icon={<CaretPrevious />}
-              gridArea='previcon'
-              onClick={onLeft}
-              hoverIndicator
-            />
+              <Button
+                fill
+                icon={<CaretPrevious />}
+                gridArea='previcon'
+                onClick={onLeft}
+                hoverIndicator
+              />
 
-            <Box gridArea='left' overflow='hidden'>
-              <Image alignSelf='end' src={leftpic} fit='contain'/>
-            </Box>
+              <Box gridArea='left' overflow='hidden'>
+                <Image alignSelf='end' src={leftpic} fit='contain'/>
+              </Box>
 
-            <Box gridArea='center' direction="row">
-              <Image alignSelf="center" src={centerpic} fit='contain'/>
-            </Box>
+              <Box gridArea='center' direction="row">
+                <Image alignSelf="center" src={centerpic} fit='contain'/>
+              </Box>
 
-            <Box gridArea='right' overflow='hidden'>
-              <Image alignSelf='start' src={rightpic} fit='contain'/>
-            </Box>
+              <Box gridArea='right' overflow='hidden'>
+                <Image alignSelf='start' src={rightpic} fit='contain'/>
+              </Box>
 
-            <Button
-              fill
-              icon={<CaretNext />}
-              gridArea='nexticon'
-              onClick={onRight}
-              hoverIndicator
-            />
-          </Grid>
+              <Button
+                fill
+                icon={<CaretNext />}
+                gridArea='nexticon'
+                onClick={onRight}
+                hoverIndicator
+              />
+            </Grid>
+          </Box>
+        </Keyboard>
+        <Box align="center" flex width="large">
+          <Markdown>
+            {postcontent}
+          </Markdown>
         </Box>
-      </Keyboard>
+      </Box>
     )
   }
 }
@@ -210,7 +221,8 @@ class App extends Component {
   }
 
   updatePosts(posts) {
-    this.setState({posts: posts})
+    this.setState({posts: posts});
+    posts.map(post => fetch(post.Post).then(response => response.text()).then(data => {post.Content = data; this.setState({posts: posts});}))
   }
 
   componentDidMount() {
@@ -276,9 +288,6 @@ class App extends Component {
                 <Box flex align='center' justify='center'>
                   <PostCorousel posts={posts}>
                   </PostCorousel>
-                  <Markdown>
-                    {postcontent}
-                  </Markdown>
                 </Box>
 
               </Box>
