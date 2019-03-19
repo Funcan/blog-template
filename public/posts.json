@@ -22,6 +22,16 @@
 	"Mutation Testing"
       ],
       "Post": "/posts/unit-tests-2-mutation/post.md"
+    },
+    {
+      "Title": "Leaving HPE",
+      "Date": "Tue, 19 Mar 2019 15:04:00 +0000",
+      "Image": "/posts/leavingHPE/Hewlett-Packard-Enterprise-logo.png",
+      "Tags": [
+        "HPE",
+	"Career"
+      ],
+      "Post": "posts/leavingHPE/post.md"
     }
   ]
 }

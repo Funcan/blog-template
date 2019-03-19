@@ -1,5 +1,3 @@
-<!--- Published: Wed, 06 Mar 2019 17:16:20 +0000 -->
-
 Unit Testing Considered Difficult
 =================================
 
