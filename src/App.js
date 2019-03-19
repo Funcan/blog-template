@@ -66,14 +66,16 @@ const sidebar = (
       <Button
         icon={<Linkedin />}
 	label='Connect'
-	onClick={() => {}}
+	href = "https://www.linkedin.com/in/duncanthomas/"
+	target="#"
       />
     </Box>
     <Box background='buttonbg' margin='xsmall' round='medium'>
       <Button
         icon={<Github />}
 	label='Code'
-	onClick={() => {}}
+	href="https://github.com/Funcan"
+	target="#"
       />
     </Box>
   </Box>
@@ -182,7 +184,7 @@ class PostCorousel extends Component {
               />
 
               <Box gridArea='left' overflow='hidden'>
-                <Image alignSelf='end' src={leftpic} fit='contain'/>
+                <Image alignSelf='end' src={leftpic} fit='contain' opacity="0.2"/>
               </Box>
 
               <Box gridArea='center' direction="row">
@@ -190,7 +192,7 @@ class PostCorousel extends Component {
               </Box>
 
               <Box gridArea='right' overflow='hidden'>
-                <Image alignSelf='start' src={rightpic} fit='contain'/>
+                <Image alignSelf='start' src={rightpic} fit='contain' opacity="0.2"/>
               </Box>
 
               <Button
