@@ -16,8 +16,9 @@ const Sidebar = (
     <Box background='buttonbg' margin='xsmall' round='medium'>
       <Button
         icon={<Rss />}
-	label="Subscribe"
-	onClick={() => {}}
+	label='Subscribe'
+	href='/rss.xml'
+	target='#'
       />
     </Box>
     <Box background='buttonbg' margin='xsmall' round='medium'>
