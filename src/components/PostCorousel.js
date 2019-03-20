@@ -38,9 +38,10 @@ class PostCorousel extends Component {
   };
 
   render() {
-    const { posts } = this.props;
+    const { posts, title } = this.props;
 
     const { activeIndex } = this.state;
+    console.log("Debug: Title = " + title);
 
     var left = (activeIndex > 0 ? posts[activeIndex-1].Image : "1px.png");
     const leftpic = left;

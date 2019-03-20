@@ -9,6 +9,7 @@
         "Testing",
         "Unit Testing"
       ],
+      "Summary": "Unit tests are more useful than I used to think, but only if you do them right",
       "Post": "/posts/unit-tests-1/post.md"
     },
     {
@@ -21,6 +22,7 @@
         "Unit Testing",
 	"Mutation Testing"
       ],
+      "Summary": "Who tests the unit tests?",
       "Post": "/posts/unit-tests-2-mutation/post.md"
     },
     {
@@ -29,8 +31,9 @@
       "Image": "/posts/leavingHPE/Hewlett-Packard-Enterprise-logo.png",
       "Tags": [
         "HPE",
-	"Career"
+        "Career"
       ],
+      "Summary": "Leaving is always hard to do",
       "Post": "posts/leavingHPE/post.md"
     }
   ]
