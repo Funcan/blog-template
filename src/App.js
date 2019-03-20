@@ -59,7 +59,8 @@ const sidebar = (
       <Button
         icon={<Mail />}
 	label='EMail'
-	onClick={() => {}}
+	href='mailto:duncan.thomas@gmail.com'
+	target="#"
       />
     </Box>
     <Box background='buttonbg' margin='xsmall' round='medium'>
