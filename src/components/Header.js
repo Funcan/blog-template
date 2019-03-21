@@ -21,25 +21,14 @@ import Theme from './Theme'
 class Header extends Component {
   state = {
     showSidebar: false,
-    loading: true,
-    posts: [],
   }
 
-  updatePosts(posts) {
-    this.setState({posts: posts});
-    posts.map(post => fetch(post.Post).then(response => response.text()).then(data => {post.Content = data; this.setState({posts: posts});}))
-  }
-
-  componentDidMount() {
-    fetch('/posts.json')
-      .then(response => response.json())
-      .then(data => this.updatePosts(data.posts))
-  }
 
   render() {
     const { showSidebar } = this.state;
-    const { posts } = this.state;
-    const { title } = this.props;
+    const { content } = this.props;
+
+    console.log("Header.render(): Content: " + content);
 
     return (
       <Grommet theme={Theme} full>
@@ -92,8 +81,7 @@ class Header extends Component {
                 )}
 
                 <Box flex align='center' justify='center'>
-                  <PostCorousel posts={posts} title={title}>
-                  </PostCorousel>
+                  <PostCorousel />
                 </Box>
 
               </Box>

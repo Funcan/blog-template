@@ -14,11 +14,24 @@ import {
 
 
 class PostCorousel extends Component {
-  state = { activeIndex: 0};
+  state = {
+    activeIndex: 0,
+    posts: []
+  };
+
+  updatePosts(posts) {
+    this.setState({posts: posts});
+    posts.map(post => fetch(post.Post).then(response => response.text()).then(data => {post.Content = data; this.setState({posts: posts});}))
+  }
+
+  componentDidMount() {
+    fetch('/posts.json')
+      .then(response => response.json())
+      .then(data => this.updatePosts(data.posts))
+  }
 
   onRight = () => {
-    const { activeIndex } = this.state;
-    const { posts } = this.props;
+    const { activeIndex, posts } = this.state;
 
     if (activeIndex < posts.length - 1) {
       this.setState({
@@ -38,9 +51,9 @@ class PostCorousel extends Component {
   };
 
   render() {
-    const { posts, title } = this.props;
+    const { title } = this.props;
 
-    const { activeIndex } = this.state;
+    const { activeIndex, posts } = this.state;
     console.log("Debug: Title = " + title);
 
     var left = (activeIndex > 0 ? posts[activeIndex-1].Image : "1px.png");
