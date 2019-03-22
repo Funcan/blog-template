@@ -18,6 +18,7 @@ import PostCorousel from './PostCorousel'
 import Sidebar from './Sidebar'
 import Theme from './Theme'
 
+
 class Header extends Component {
   state = {
     showSidebar: false,
@@ -26,9 +27,18 @@ class Header extends Component {
 
   render() {
     const { showSidebar } = this.state;
-    const { content } = this.props;
+    const { post } = this.props;
 
-    console.log("Header.render(): Content: " + content);
+    console.log("Header.render(): Post: " + post);
+
+    let ContentChoice
+    if (post) {
+      ContentChoice = ( <PostCorousel title={post}/> )
+    } else  {
+      ContentChoice = ( <PostCorousel /> )
+    }
+
+    const Content = ContentChoice;
 
     return (
       <Grommet theme={Theme} full>
@@ -81,7 +91,7 @@ class Header extends Component {
                 )}
 
                 <Box flex align='center' justify='center'>
-                  <PostCorousel />
+                  {Content}
                 </Box>
 
               </Box>

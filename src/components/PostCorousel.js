@@ -50,11 +50,37 @@ class PostCorousel extends Component {
     }
   };
 
+  findIndex = function(posts, title) {
+    if (!posts) {
+      return -1;
+    }
+    for (let i= 0; i< posts.length; i++) {
+      let posttitle = posts[i].Title;
+      posttitle = posttitle.replace(" ", "_");
+      if (title === posttitle) {
+        return i;
+      }
+    }
+  }
+
   render() {
     const { title } = this.props;
 
     const { activeIndex, posts } = this.state;
-    console.log("Debug: Title = " + title);
+
+    if (title) {
+      let index = this.findIndex(posts, title);
+      if (index !== -1) {
+        if (activeIndex !== index) {
+          this.setState({
+            activeIndex: index,
+          });
+          return null;
+        }
+      } else {
+        console.log("Post not found");
+      }
+    }
 
     var left = (activeIndex > 0 ? posts[activeIndex-1].Image : "1px.png");
     const leftpic = left;
