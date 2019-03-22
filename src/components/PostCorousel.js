@@ -25,6 +25,10 @@ class PostCorousel extends Component {
   }
 
   componentDidMount() {
+    const { title } = this.props;
+    this.setState({
+      title: title,
+    });
     fetch('/posts.json')
       .then(response => response.json())
       .then(data => this.updatePosts(data.posts))
@@ -36,6 +40,7 @@ class PostCorousel extends Component {
     if (activeIndex < posts.length - 1) {
       this.setState({
         activeIndex: activeIndex + 1,
+        title: null,
       });
     }
   };
@@ -46,17 +51,21 @@ class PostCorousel extends Component {
     if (activeIndex > 0) {
       this.setState({
         activeIndex: activeIndex - 1,
+        title: null,
       });
     }
   };
+
+  postToUrl = (post) => {
+    return post.Title.replace(" ", "_");
+  }
 
   findIndex = function(posts, title) {
     if (!posts) {
       return -1;
     }
     for (let i= 0; i< posts.length; i++) {
-      let posttitle = posts[i].Title;
-      posttitle = posttitle.replace(" ", "_");
+      let posttitle = this.postToUrl(posts[i])
       if (title === posttitle) {
         return i;
       }
@@ -64,9 +73,7 @@ class PostCorousel extends Component {
   }
 
   render() {
-    const { title } = this.props;
-
-    const { activeIndex, posts } = this.state;
+    const { activeIndex, posts, title} = this.state;
 
     if (title) {
       let index = this.findIndex(posts, title);
