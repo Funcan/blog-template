@@ -6,6 +6,7 @@ import {
   Image,
   Keyboard,
   Markdown,
+  Paragraph,
 } from 'grommet';
 import {
   CaretNext,
@@ -115,16 +116,21 @@ class PostCorousel extends Component {
     const onRight = this.onRight;
 
     var content;
+    var date;
     if (posts.length > 0) {
       if (posts[activeIndex].Content) {
         content = posts[activeIndex].Content;
+        date = posts[activeIndex].Date;
       } else {
         content = "Loading...";
+        date = "";
       }
     } else {
       content = "";
+      date = "";
     }
     const postcontent = content;
+    const postdate = date;
 
     return (
       <Box flex align='center' justify='center'>
@@ -174,6 +180,9 @@ class PostCorousel extends Component {
           </Box>
         </Keyboard>
         <Box align="center" flex width="large">
+          <Paragraph alignSelf="center">
+            {postdate}
+          </Paragraph>
           <Markdown>
             {postcontent}
           </Markdown>
