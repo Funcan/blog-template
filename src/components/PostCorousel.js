@@ -21,7 +21,10 @@ class PostCorousel extends Component {
 
   updatePosts(posts) {
     this.setState({posts: posts});
-    posts.map(post => fetch(post.Post).then(response => response.text()).then(data => {post.Content = data; this.setState({posts: posts});}))
+    posts.map(post => fetch(post.Post).then(response => response.text()).then(data => {
+      post.Content = data;
+      this.setState({posts: posts, activeIndex: posts.length-1});
+    }))
   }
 
   componentDidMount() {
