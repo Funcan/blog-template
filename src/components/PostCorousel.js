@@ -12,6 +12,9 @@ import {
   CaretNext,
   CaretPrevious,
 } from 'grommet-icons';
+import toDate from '@fav/type.to-date';
+
+import niceDate from '../utils/nicedate';
 
 
 class PostCorousel extends Component {
@@ -120,17 +123,17 @@ class PostCorousel extends Component {
     if (posts.length > 0) {
       if (posts[activeIndex].Content) {
         content = posts[activeIndex].Content;
-        date = posts[activeIndex].Date;
+        date = toDate.RFC2822(posts[activeIndex].Date);
       } else {
         content = "Loading...";
-        date = "";
+        date = null;
       }
     } else {
-      content = "";
-      date = "";
+      content = "Loading...";
+      date = null;
     }
     const postcontent = content;
-    const postdate = date;
+    const postdate = niceDate(date);
 
     return (
       <Box flex align='center' justify='center'>

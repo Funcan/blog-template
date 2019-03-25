@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fav/type.to-date": "^1.0.2",
     "grommet": "https://github.com/grommet/grommet/tarball/stable",
     "grommet-icons": "^4.2.0",
     "react": "^16.8.4",
