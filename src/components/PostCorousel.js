@@ -13,8 +13,10 @@ import {
   CaretPrevious,
 } from 'grommet-icons';
 import toDate from '@fav/type.to-date';
+import * as qs from 'query-string';
 
 import niceDate from '../utils/nicedate';
+import history from './History'
 
 
 class PostCorousel extends Component {
@@ -32,13 +34,19 @@ class PostCorousel extends Component {
   }
 
   componentDidMount() {
-    const { title } = this.props;
-    this.setState({
-      title: title,
-    });
     fetch('/posts.json')
       .then(response => response.json())
-      .then(data => this.updatePosts(data.posts))
+      .then(data => this.updatePosts(data.posts));
+    let title = qs.parse(window.location.search).title;
+    if (title) {
+      const { posts } = this.state;
+      let index = this.findIndex(posts, title);
+      if (index !== -1) {
+        this.setState({
+          activeIndex: index,
+        });
+      }
+    }
   }
 
   onRight = () => {
@@ -64,7 +72,7 @@ class PostCorousel extends Component {
   };
 
   postToUrl = (post) => {
-    return post.Title.replace(" ", "_");
+    return encodeURI(post.Title);
   }
 
   findIndex = function(posts, title) {
@@ -80,20 +88,26 @@ class PostCorousel extends Component {
   }
 
   render() {
-    const { activeIndex, posts, title} = this.state;
+    const { posts} = this.state;
+    let index = this.state.activeIndex;
 
+    let title = qs.parse(window.location.search).title;
+    console.log("Title: " + title);
     if (title) {
-      let index = this.findIndex(posts, title);
-      if (index !== -1) {
-        if (activeIndex !== index) {
-          this.setState({
-            activeIndex: index,
-          });
-          return null;
-        }
+      let newindex = this.findIndex(posts, title);
+      if (newindex !== -1) {
+        index = newindex;
       } else {
         console.log("Post not found");
       }
+    }
+
+    const activeIndex = index;
+
+    if (posts[activeIndex]) {
+      history.push("/?title=" + this.postToUrl(posts[activeIndex]));
+      console.log("History object props:");
+      console.log(window.location.search);
     }
 
     var left = (activeIndex > 0 ? posts[activeIndex-1].Image : "1px.png");
