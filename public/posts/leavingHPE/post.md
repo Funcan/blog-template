@@ -127,7 +127,7 @@ that it was time for me to more my career on.
 
 #### Onwards and Upwards
 
-After a fair amount of hunting round, I'm therefore off to join
+After a fair amount of hunting round, I'm off to join
 [Groupon](https://www.groupon.ie/) in their infrastructure team. I'll be
 working on migrating live production workloads onto Kubernetes, which
 should bring some new and interesting challenges. I wish all my former
