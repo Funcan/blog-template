@@ -6,10 +6,11 @@ This week is my last week at HPE, Galway. I've been here just shy of
 a lot. Here's a quick look back at those projects, and a few musings about
 each one:
 
-#### Public Cloud
+#### HP Public Cloud
 
 This was the project I signed up for, specifically the block storage
-component.
+component. Building a production public cloud, aimed at enterprise
+customers. Certainly a bold new move for HP at the time.
 
 The amount of change I saw during this project and the transformations
 within the individual teams was tremendous. During the interview, I heard
@@ -37,15 +38,15 @@ suitable for upstream inclusion in the form we deployed them, and reduced
 the amount of testing and steering we were doing on the new upstream code
 to a minimal level. Getting back to running upstream code was painful and
 time-consuming. I'm not sure what the right call was here, and hindsight
-always makes things seem obvious, but certainly it was an interesting if
-frustrating thing to see play out.
+always makes things seem obvious, but certainly it was an interesting - if
+frustrating - thing to see play out.
 
 I was lucky to be at the San Francisco summit and part of the decision to
 form Cinder. Rackspace's Lunr project, which was touted as the future of
 OpenStack block storage, was delayed again. A bunch of us were stuck
 waiting for it; we had no code, no design documentation and rapidly
-reducing faith in its timely delivery. John Griffith proposed we do it
-ourselves, and Cinder was born.
+diminishing faith in its timely delivery. John Griffith, then of Solidfire
+storage,  proposed we do it ourselves, and Cinder was born.
 
 I worked on Cinder as a core developer basically full time for about
 5 years - splitting my time between a proprietary backend called 'Bock'
@@ -66,8 +67,8 @@ you can't win them all.
 Ultimately, the HP public cloud was not a commercial success. I think
 there were a bunch of drivers for this:
 
- * Going head to head with a massively entranced partner like AWS takes
-   more investment that HP were prepared for
+ * Going head to head with a massively entrenched partner like AWS takes
+   more investment that HP were prepared for.
 
  * HP sales team were not set up to effectively sell a cloud offering. The
    incentives for the sales teams were not there, and the ability to sell
@@ -89,7 +90,7 @@ and had some fun along the way.
 
 This was a pivot back towards what HPE knows better: On-premise enterprise
 software. We initially attempted to base the product around the very new
-Triple-O (OpenStack On OpenStack) upstream code base; the immaturity of
+Triple-O (OpenStack On OpenStack) upstream code; the immaturity of
 this project together with some fundamental technical disagreements
 between that project's core team and our architects led to us using
 a different approach for HLM v2. Version 1 was very much an alpha product,
