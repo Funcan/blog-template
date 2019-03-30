@@ -61,7 +61,7 @@ Survived 🙁 (3)
 We can view each of the failing mutations via `mutmut show`:
 
 
-```
+```diff
 $ mutmut show 2
 --- mycode.py
 +++ mycode.py
