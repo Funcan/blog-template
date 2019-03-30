@@ -14,6 +14,7 @@ There's also a giant list of other mutation testing tools and libraries [here](h
 #### An example of what it catches
 
 Given the source code mycode.py:
+
 ```python
 def something():
     return {
@@ -24,6 +25,7 @@ def something():
 ```
 
 And given the test:
+
 ``` python
 import unittest
 
@@ -36,9 +38,9 @@ class SomethingTest(unittest.TestCase):
             assert key in thing
 ```
 
-mutmut gives us a status line of "⠙ 6/6  🎉 3  ⏰ 0  🤔 0  🙁 3"
+mutmut gives us a status line of `⠙ 6/6  🎉 3  ⏰ 0  🤔 0  🙁 `"
 
-This means that 6 mutations were attempted, 3 were caught and 3 were missed. This is better spelt out from the output of "mutmut results":
+This means that 6 mutations were attempted, 3 were caught and 3 were missed.  This is more clearly spelt out from the output of `mutmut results`:
 
 ```
 $ mutmut results
@@ -56,7 +58,8 @@ Survived 🙁 (3)
 2, 4, 6
 ```
 
-We can view each of the failing mutations via "mutmut show":
+We can view each of the failing mutations via `mutmut show`:
+
 
 ```
 $ mutmut show 2
