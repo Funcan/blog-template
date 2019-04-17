@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@fav/type.to-date": "^1.0.2",
-    "grommet": "https://github.com/grommet/grommet/tarball/stable",
+    "grommet": "^2.6.6",
     "grommet-icons": "^4.2.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
