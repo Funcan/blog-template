@@ -4,9 +4,25 @@
     <title>funcan.github.io</title>
     <description>A vaguely tech focused blog by Duncan Thomas</description>
     <link>https://funcan.github.io/</link>
-    <lastBuildDate>Wed, 20 Mar 2019 19:32:00 +0000</lastBuildDate>
-    <pubDate>Wed, 20 Mar 2019 19:32:00 +0000</pubDate>
+    <lastBuildDate>Fri, 24 May 2019 15:42:00 +0200</lastBuildDate>
+    <pubDate>Fri, 24 May 2019 15:42:00 +0200</pubDate>
     <ttl>1800</ttl>
+
+    <item>
+      <title>1 Week on a Pixel 3xl</title>
+      <description>New phone, new complaints</description>
+      <link>https://funcan.github.io/post/kubecon-europe-2019</link>
+      <guid isPermaLink="false">05182eba-a508-4af0-bac2-f81058c40dd2</guid>
+      <pubDate>Fri, 24 May 2019 15:42:00 +0200</pubDate>
+    </item>
+
+    <item>
+      <title>1 Week on a Pixel 3xl</title>
+      <description>New phone, new complaints</description>
+      <link>https://funcan.github.io/post/1-week-on-a-pixel-3</link>
+      <guid isPermaLink="false">e878e58e-6b0e-41d9-a1b5-fb1f5600c188</guid>
+      <pubDate>Thu, 9 May 2019 12:00:00 +0100</pubDate>
+    </item>
 
     <item>
       <title>Leaving HPE</title>
