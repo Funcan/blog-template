@@ -2,12 +2,12 @@ Kubecon Europe 2019
 ===================
 
 4 days, 8000 attendees, 103 listed sponsors, 18 lightening talks, 26 keynotes,
-something like 400 talks, 3 official parties. So what were initial post event
-thoughts?
+something like 400 talks, 3 official parties. So what were my initial takeaway
+points from [the event](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2019/)?
 
 ### Security
 
-This is definitely a major topic. Both access control (RBAC and OPA being the
+This was definitely a major topic. Both access control (RBAC and OPA being the
 major topics of discussion) and network security (network policies) had several
 sessions each dedicated to them. Several pen-testing and capture-the-flag
 sessions. Lots of vendors are in this space, doing container scanning and live
@@ -20,9 +20,13 @@ timescales of 12 months or less.
 ### Monitoring, logging, tracing and metrics
 
 There is wide acceptance that this is not trivial to roll your own solution,
-and lots of vendors offering to take care of a lot of it for you. I didn't
+and lots of vendors are ffering to take care of a lot of it for you. I didn't
 see that much to differentiate their offerings to be honest, though I was only
-looking at sales materials and demos rather than digging deeply.
+looking at sales materials and demos rather than digging deeply. If you want a
+dashboard full of graphs, there are lots of people to do it for you. If you
+need searchable logs aggregating, then the same. There are a range of options
+for tracing, from hosted to managed to install-it-yourself, all taking
+advantage of the [opentracing](https://opentracing.io/) standard.
 
 ### Managed services
 
@@ -62,5 +66,5 @@ the coming weeks, so please feel free to come back, or find an RSS link on the
 left sidebar.
 
 Any questions, comments or other feedback, please do reach out to me via
-duncan.thomas@gmail.com. Thanks for reading!
+[duncan.thomas@gmail.com](mailto:duncan.thomas@gmail.com). Thanks for reading!
 
